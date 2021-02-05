@@ -194,13 +194,17 @@ export const startAsync = async (projectRoot: string, options: StartOptions) => 
       switch (key) {
         case 'A':
           log.clear();
-          await Android.openProjectAsync({ projectRoot, shouldPrompt: true });
+          await Android.openProjectAsync({
+            projectRoot,
+            shouldPrompt: true,
+            devClient: options.devClient ?? false,
+          });
           printHelp();
           break;
         case 'a': {
           log.clear();
           log('Opening on Android...');
-          await Android.openProjectAsync({ projectRoot });
+          await Android.openProjectAsync({ projectRoot, devClient: options.devClient ?? false });
           printHelp();
           break;
         }
